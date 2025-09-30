@@ -1,4 +1,4 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.ListaDoblementeEnlazada;
 
-public class NodoDoble {
+public class NodoDoble2 {
 }
