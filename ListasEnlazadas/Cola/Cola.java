@@ -5,7 +5,34 @@ public class Cola<T extends Comparable<T>> {
     private Nodo<T> ultimo;
     private int tamano;
 
-    public Cola(int tamano) {
+    public Cola() {
+        primero = null;
+        ultimo = null;
+        tamano = 0;
+
+    }
+
+    public Nodo<T> getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(Nodo<T> primero) {
+        this.primero = primero;
+    }
+
+    public Nodo<T> getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(Nodo<T> ultimo) {
+        this.ultimo = ultimo;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(int tamano) {
         this.tamano = tamano;
     }
 }
