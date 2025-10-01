@@ -35,4 +35,15 @@ public class Cola<T extends Comparable<T>> {
     public void setTamano(int tamano) {
         this.tamano = tamano;
     }
+
+    public void encolar(Nodo<T> newNodo){
+        Nodo<T> nuevo = newNodo;
+        if(primero==null){
+            primero=nuevo;
+            ultimo=nuevo;
+        }else {
+            ultimo.setProximo(nuevo);
+            ultimo = nuevo;
+        }
+    }
 }
