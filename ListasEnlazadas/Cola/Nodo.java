@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.Cola;
 
-public class Nodo <T extends Comparable<T>> {
+public class Nodo <T> {
     private T dato;
     private Nodo<T> proximo;
     public Nodo(T dato){
