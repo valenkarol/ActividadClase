@@ -1,9 +1,9 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.Cola;
 
 public class Cola<T> {
-    private Nodo<T> primero;
-    private Nodo<T> ultimo;
-    private int tamano;
+    protected Nodo<T> primero;
+    protected Nodo<T> ultimo;
+    protected int tamano;
 
     public Cola() {
         primero = null;
