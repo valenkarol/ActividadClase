@@ -46,4 +46,17 @@ public class Cola<T extends Comparable<T>> {
             ultimo = nuevo;
         }
     }
+    //desencolar
+    public T desencolar() {
+        if (primero == null) {
+            return null;
+        }
+        T dato = primero.getDato();
+        primero = primero.getProximo();
+        if (primero == null) {
+            ultimo = null;
+        }
+        tamano--;
+        return dato;
+    }
 }
