@@ -1,5 +1,8 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.DoblementeCircular;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class ListaDobleCircular<T extends Comparable<T>> {
     private Nodo<T> primero;
     private Nodo<T> ultimo;
@@ -73,5 +76,43 @@ public class ListaDobleCircular<T extends Comparable<T>> {
             actual.setAnterior(nuevo);
             tamano++;
         }
+    }
+
+    public void sort() {
+        if (estaVacia() || primero == ultimo) return; // 0 o 1 nodo, ya está ordenado
+
+        // 1. Pasar los elementos a un ArrayList
+        ArrayList<T> listaAux = new ArrayList<>();
+        Nodo<T> actual = primero;
+        do {
+            listaAux.add(actual.getDato());
+            actual = actual.getSiguiente();
+        } while (actual != primero);
+
+        // 2. Ordenar el ArrayList con Collections.sort
+        Collections.sort(listaAux);
+
+        // 3. Reemplazar los valores en la lista circular
+        actual = primero;
+        int i = 0;
+        do {
+            actual.setDato(listaAux.get(i++));
+            actual = actual.getSiguiente();
+        } while (actual != primero);
+    }
+
+    public void mostrar() {
+        if (estaVacia()) {
+            System.out.println("[]");
+            return;
+        }
+        Nodo<T> actual = primero;
+        System.out.print("[");
+        do {
+            System.out.print(actual.getDato());
+            actual = actual.getSiguiente();
+            if (actual != primero) System.out.print(" <-> ");
+        } while (actual != primero);
+        System.out.println("] (circular)");
     }
 }
