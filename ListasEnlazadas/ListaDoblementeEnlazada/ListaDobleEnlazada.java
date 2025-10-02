@@ -1,5 +1,8 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.ListaDoblementeEnlazada;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class ListaDobleEnlazada<T extends Comparable<T>> {
     private NodoDoble2<T> primero;   // primer nodo
     private NodoDoble2<T> ultimo;     // último nodo
@@ -79,5 +82,39 @@ public class ListaDobleEnlazada<T extends Comparable<T>> {
             actual.setAnterior(nuevo);
             tamaño++;
         }
+    }
+
+    public void sort() {
+        if (estaVacia() || primero.getProximo() == null) return;
+
+        // 1. Pasamos los datos a un ArrayList
+        ArrayList<T> listaAux = new ArrayList<>();
+        NodoDoble2<T> actual = primero;
+        while (actual != null) {
+            listaAux.add(actual.getElemento());
+            actual = actual.getProximo();
+        }
+
+        // 2. Ordenamos el ArrayList
+        Collections.sort(listaAux);
+
+        // 3. Reconstruimos la lista con los elementos ordenados
+        actual = primero;
+        int i = 0;
+        while (actual != null) {
+            actual.setElemento(listaAux.get(i++));
+            actual = actual.getProximo();
+        }
+    }
+
+    public void mostrar() {
+        NodoDoble2<T> actual = primero;
+        System.out.print("[");
+        while (actual != null) {
+            System.out.print(actual.getElemento());
+            if (actual.getProximo() != null) System.out.print(" <-> ");
+            actual = actual.getProximo();
+        }
+        System.out.println("]");
     }
 }
