@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.DoblementeCircular;
 
-public class ListaDobleCircular<T> {
+public class ListaDobleCircular<T extends Comparable<T>> {
     private Nodo<T> primero;
     private Nodo<T> ultimo;
     private int tamano;
@@ -53,5 +53,25 @@ public class ListaDobleCircular<T> {
             primero = nuevo;
         }
         tamano++;
+    }
+    // Insertar en forma ordenadsa
+    public void insertarOrdenado(T dato) {
+        if (estaVacia() || dato.compareTo(primero.getDato()) <= 0) {
+            insertarInicio(dato);
+        } else if (dato.compareTo(ultimo.getDato()) >= 0) {
+            insertarFinal(dato);
+        } else {
+            Nodo<T> actual = primero;
+            while (dato.compareTo(actual.getDato()) > 0) {
+                actual = actual.getSiguiente();
+            }
+            Nodo<T> nuevo = new Nodo<>(dato);
+            Nodo<T> anterior = actual.getAnterior();
+            anterior.setSiguiente(nuevo);
+            nuevo.setAnterior(anterior);
+            nuevo.setSiguiente(actual);
+            actual.setAnterior(nuevo);
+            tamano++;
+        }
     }
 }
