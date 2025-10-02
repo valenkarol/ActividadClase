@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.ListaCircular;
 
-import co.edu.uniquindio.poo.ListasEnlazadas.Nodo;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
