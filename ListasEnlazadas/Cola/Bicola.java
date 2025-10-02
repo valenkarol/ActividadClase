@@ -31,8 +31,13 @@ public class Bicola<T> extends Cola<T> {
     // Eliminar al final
     public T eliminarFinal() {
         if (ultimo == null) {
-            return null;
-        } else if (primero == ultimo) {
+            return null; // lista vacía
+        }
+
+        T datoEliminado = ultimo.getDato(); // guardamos el dato antes de perderlo
+
+        if (primero == ultimo) {
+            // solo hay un nodo
             primero = null;
             ultimo = null;
         } else {
@@ -44,7 +49,9 @@ public class Bicola<T> extends Cola<T> {
             actual.setProximo(null);
             ultimo = actual;
         }
+
         tamano--;
+        return datoEliminado;
 
     }
 

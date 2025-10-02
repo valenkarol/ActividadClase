@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.ListasEnlazadas;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class ListaSimpleEnlazada<T extends Comparable<T>> implements Iterable<T>{
@@ -142,6 +144,29 @@ public class ListaSimpleEnlazada<T extends Comparable<T>> implements Iterable<T>
             actual.setProximo(newNodo);
         }
         tamaño++;
+    }
+
+    public void sort() {
+        if (estaVacia() || primero.getProximo() == null) return;
+
+        // 1. Pasar a un ArrayList
+        ArrayList<T> listaAux = new ArrayList<>();
+        Nodo<T> actual = primero;
+        while (actual != null) {
+            listaAux.add(actual.getDato());
+            actual = actual.getProximo();
+        }
+
+        // 2. Ordenar con Collections.sort
+        Collections.sort(listaAux);
+
+        // 3. Reconstruir la lista
+        actual = primero;
+        int i = 0;
+        while (actual != null) {
+            actual.setDato(listaAux.get(i++));
+            actual = actual.getProximo();
+        }
     }
     @Override
     public Iterator<T> iterator() {
