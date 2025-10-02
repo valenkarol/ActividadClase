@@ -2,6 +2,9 @@ package co.edu.uniquindio.poo.ListasEnlazadas.ListaCircular;
 
 import co.edu.uniquindio.poo.ListasEnlazadas.Nodo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class ListaCircular<T extends Comparable<T>> {
     private Nodo<T> primero;
     private int tamaño;
@@ -57,5 +60,44 @@ public class ListaCircular<T extends Comparable<T>> {
             actual.setProximo(nuevo);
             tamaño++;
         }
+    }
+
+    public void sort() {
+        if (primero == null || primero.getProximo() == primero) return;
+
+        // 1. Pasar los elementos a un ArrayList
+        ArrayList<T> listaAux = new ArrayList<>();
+        Nodo<T> actual = primero;
+        do {
+            listaAux.add(actual.getDato());
+            actual = actual.getProximo();
+        } while (actual != primero);
+
+        // 2. Ordenar con Collections.sort
+        Collections.sort(listaAux);
+
+        // 3. Reconstruir la lista
+        actual = primero;
+        int i = 0;
+        do {
+            actual.setDato(listaAux.get(i++));
+            actual = actual.getProximo();
+        } while (actual != primero);
+    }
+
+    // Mostrar la lista circular
+    public void mostrar() {
+        if (primero == null) {
+            System.out.println("[]");
+            return;
+        }
+        Nodo<T> actual = primero;
+        System.out.print("[");
+        do {
+            System.out.print(actual.getDato());
+            actual = actual.getProximo();
+            if (actual != primero) System.out.print(" -> ");
+        } while (actual != primero);
+        System.out.println("] (circular)");
     }
 }
