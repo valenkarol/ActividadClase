@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.ListasEnlazadas.ListaDoblementeEnlazada;
 
-public class ListaDobleEnlazada<T> {
+public class ListaDobleEnlazada<T extends Comparable<T>> {
     private NodoDoble2<T> primero;   // primer nodo
     private NodoDoble2<T> ultimo;     // último nodo
     private int tamaño;             // cantidad de nodos
@@ -60,5 +60,24 @@ public class ListaDobleEnlazada<T> {
         nuevo.setProximo(actual);
         actual.setAnterior(nuevo);
         tamaño++;
+    }
+    public void agregarOrdenado(T elemento) {
+        if (estaVacia() || elemento.compareTo(primero.getElemento()) <= 0) {
+            agregarInicio(elemento);
+        } else if (elemento.compareTo(ultimo.getElemento()) >= 0) {
+            agregarFinal(elemento);
+        } else {
+            NodoDoble2<T> actual = primero;
+            while (elemento.compareTo(actual.getElemento()) > 0) {
+                actual = actual.getProximo();
+            }
+            NodoDoble2<T> nuevo = new NodoDoble2<>(elemento);
+            NodoDoble2<T> anterior = actual.getAnterior();
+            anterior.setProximo(nuevo);
+            nuevo.setAnterior(anterior);
+            nuevo.setProximo(actual);
+            actual.setAnterior(nuevo);
+            tamaño++;
+        }
     }
 }
