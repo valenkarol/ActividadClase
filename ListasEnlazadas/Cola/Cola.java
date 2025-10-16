@@ -12,30 +12,6 @@ public class Cola<T> {
 
     }
 
-    public Nodo<T> getPrimero() {
-        return primero;
-    }
-
-    public void setPrimero(Nodo<T> primero) {
-        this.primero = primero;
-    }
-
-    public Nodo<T> getUltimo() {
-        return ultimo;
-    }
-
-    public void setUltimo(Nodo<T> ultimo) {
-        this.ultimo = ultimo;
-    }
-
-    public int getTamano() {
-        return tamano;
-    }
-
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
-    }
-
     public void encolar(Nodo<T> newNodo){
         Nodo<T> nuevo = newNodo;
         if(primero==null){
