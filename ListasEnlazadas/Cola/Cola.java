@@ -11,7 +11,6 @@ public class Cola<T> {
         tamano = 0;
 
     }
-
     public void encolar(Nodo<T> newNodo){
         Nodo<T> nuevo = newNodo;
         if(primero==null){
